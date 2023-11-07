@@ -71,8 +71,11 @@ header .nav_wrap ul {
     align-items: center;
 }
 
-header .nav_wrap ul li {
+header .nav_wrap ul li a {
     padding: 0 20px;
 }
-
+header .nav_wrap ul li a:hover {
+    color: var(--main-red);
+    transition: all 0.8s;
+}
 /* -------------------------------------- */
