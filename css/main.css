@@ -79,3 +79,43 @@ header .nav_wrap ul li a:hover {
     transition: all 0.8s;
 }
 /* -------------------------------------- */
+/* index section 프로필과 자막 */
+#introduce {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    width: 100%;
+    height: 100%;
+}
+#introduce .audio_wrap {
+    position: relative;
+}
+#introduce .audio_wrap .profile_img {
+    background-color: #eee;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+#introduce .audio_wrap .profile_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#introduce .audio_wrap .start_img {
+    position: absolute;
+    top: 60px;
+    left: 80px;
+    cursor: pointer;
+}
+#introduce .audio_wrap .start_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#introduce .subtitle_wrap {
+    margin-top: 40px;
+    font-size: 24px;
+}
