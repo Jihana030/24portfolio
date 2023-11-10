@@ -62,6 +62,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-family: 'GmarketSansMedium';
 }
 
 header .nav_wrap ul {
@@ -118,4 +119,5 @@ header .nav_wrap ul li a:hover {
 #introduce .subtitle_wrap {
     margin-top: 40px;
     font-size: 24px;
+    font-family: 'ONE-Mobile-Title';
 }
