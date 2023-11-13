@@ -82,6 +82,7 @@ header .nav_wrap ul li a:hover {
 /* -------------------------------------- */
 /* index section 프로필과 자막 */
 #introduce {
+    font-family: 'ONE-Mobile-Title';
     display: flex;
     flex-direction: column;
     justify-content: center;
