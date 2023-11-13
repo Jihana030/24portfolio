@@ -52,6 +52,13 @@ body {
     color: var(--main-red);
 }
 
+.dis-none {
+    display: none;
+}
+
+.cursor_p {
+    cursor: pointer;
+}
 /* -------------------------------------- */
 
 /* header */
@@ -117,8 +124,19 @@ header .nav_wrap ul li a:hover {
     height: 100%;
     object-fit: cover;
 }
+
+#introduce .audio_wrap .start_img.st_opacity {
+    opacity: 0;
+    transition: all 0.8s;
+    /* cursor: default; */
+}
+
+#introduce .audio_cnt {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
 #introduce .subtitle_wrap {
     margin-top: 40px;
     font-size: 24px;
-    font-family: 'ONE-Mobile-Title';
 }
