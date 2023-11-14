@@ -87,6 +87,12 @@ header .nav_wrap ul li a:hover {
     transition: all 0.8s;
 }
 /* -------------------------------------- */
+/* 첫화면 라벨 */
+#prfLabel {
+    position: absolute;
+    top: 0;
+    right: 10%;
+}
 /* index section 프로필과 자막 */
 #introduce {
     font-family: 'ONE-Mobile-Title';
