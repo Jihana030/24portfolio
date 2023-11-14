@@ -12,7 +12,6 @@
     })
 
     // audio pause
-    console.log(!(playBtn.classList.contains('st_opacity')));
     if (!(playBtn.classList.contains('st_opacity'))) {
         prfImg.addEventListener('click', e=>{
             prfAudio.pause();
