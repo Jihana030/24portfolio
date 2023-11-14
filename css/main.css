@@ -87,6 +87,12 @@ header .nav_wrap ul li a:hover {
     transition: all 0.8s;
 }
 /* -------------------------------------- */
+/* 첫화면 라벨 */
+#prfLabel {
+    position: absolute;
+    top: 0;
+    right: 10%;
+}
 /* index section 프로필과 자막 */
 #introduce {
     font-family: 'ONE-Mobile-Title';
@@ -118,6 +124,7 @@ header .nav_wrap ul li a:hover {
     top: 60px;
     left: 80px;
     cursor: pointer;
+    transition: all 0.8s;
 }
 #introduce .audio_wrap .start_img img {
     width: 100%;
@@ -127,7 +134,7 @@ header .nav_wrap ul li a:hover {
 
 #introduce .audio_wrap .start_img.st_opacity {
     opacity: 0;
-    transition: all 0.8s;
+    
     /* cursor: default; */
 }
 
