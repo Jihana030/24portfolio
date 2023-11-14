@@ -24,3 +24,5 @@ header를 include해서 데려오는거였더니 queryselector가 되지 않는�
 아. header가 dis-none해서 사라지면 다시 불러오는 것 같은...?데..?
 아닌가. 어쨌든 첫 화면에서는 없다가 생기면 되는 거라서 js에서 만들기로 했다.
 그런데 왜 data-include-path속성을 똑같이 줬는데 내용이 안오지..? css만 적용되버렸다...
+include.js도 같이 만들어줘야하나 싶어서 그것도 js에서 만들어 넣어줬는데 상태가 똑같다.. 
+자식으로 js가 들어가긴 했는데 include되지 않는다.
