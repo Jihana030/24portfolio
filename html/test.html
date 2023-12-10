@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        li{
+            list-style: none;
+            cursor: pointer;
+        }
+        span.child {
+            text-decoration: line-through;
+        }
+    </style>
+    <title>테스트</title>
+</head>
+<body>
+    <!-- 이벤트 위임 연습 -->
+    <h2>CHECKLIST</h2>
+    <ul>
+        <li>
+            <input type="checkbox">
+            <span>숨 쉬기</span>
+        </li>
+        <li>
+            <input type="checkbox">
+            <span>잘 먹기</span>
+        </li>
+        <li>
+            <input type="checkbox">
+            <span>잘 자기</span>
+        </li>
+        <li>
+            <input type="checkbox">
+            <span>열공하기</span>
+        </li>
+    </ul>
+</body>
+<script>
+    let parent = document.querySelector('ul');
+    parent.addEventListener('click', e=>{
+        e.target.classList.toggle('child');
+        // 인풋도 제어하고 싶었는데 이벤트 위임으로는 힘든건가..?
+        if(e.target.classList.contains('child')){
+            e.target.checked = true;
+        } else {
+            e.target.checked = false;
+        }
+    })
+</script>
+</html>
