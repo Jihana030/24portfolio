@@ -133,7 +133,7 @@ header .nav_wrap ul li a:hover {
 }
 
 #introduce .audio_wrap .start_img.st_opacity {
-    opacity: 0.2;
+    opacity: 0;
     
     /* cursor: default; */
 }
