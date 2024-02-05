@@ -15,3 +15,6 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+// 리액트 최신버전과 수업이 충돌하면 수정할 코드
+// root.render에 내용 쓰면 됌.
