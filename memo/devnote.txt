@@ -61,7 +61,11 @@ https://ywtechit.tistory.com/410
 4. 디자인된 페이지들 순차적으로 작업
 
 오후 3:45 2024-01-24
-try...catch문 써보기
+작업할때 try...catch문 써보기
+
+
+
+
 
 
 
