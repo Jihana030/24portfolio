@@ -10,4 +10,6 @@ function App() {
 
 export default App;
 
-/* 속성에 숫자도 중괄호로 감싸줘야함 */
+/* 
+  속성에 숫자도 중괄호로 감싸줘야함 
+*/
