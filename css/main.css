@@ -92,6 +92,7 @@ header .nav_wrap ul li a:hover {
     position: absolute;
     top: 0;
     right: 10%;
+    cursor: pointer;
 }
 /* index section 프로필과 자막 */
 #introduce {
