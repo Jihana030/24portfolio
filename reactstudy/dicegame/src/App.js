@@ -1,20 +1,29 @@
-import {useState} from 'react';
+import {useState} from 'react'; //state는 불러와서 써야함.
 import Button from './Button';
 import Dice from './Dice';
+
+function random(n) {
+  return Math.ceil(Math.random() * n);
+}
 
 function App() {
   const [num, setNum] = useState(1);
   // [state값, setter함수(state값 변경, setter함수로만 가능)] = useState(초기값)
 
   const handleRollClick = () => {
-    setNum(3);
+    const nextNum = random(6);
+    setNum(nextNum);
+  }
+
+  const handleClearClick=()=>{
+    setNum(1);
   }
 
   return (
     <div>
       <div>
         <Button onClick={handleRollClick}>던지기</Button>
-        <Button>처음부터</Button>
+        <Button onClick={handleClearClick}>처음부터</Button>
       </div>
       <Dice color='red' num={num}/>
     </div>
