@@ -1,14 +1,22 @@
+import {useState} from 'react';
 import Button from './Button';
 import Dice from './Dice';
 
 function App() {
+  const [num, setNum] = useState(1);
+  // [state값, setter함수(state값 변경, setter함수로만 가능)] = useState(초기값)
+
+  const handleRollClick = () => {
+    setNum(3);
+  }
+
   return (
     <div>
       <div>
-        <Button>던지기</Button>
+        <Button onClick={handleRollClick}>던지기</Button>
         <Button>처음부터</Button>
       </div>
-      <Dice color='red' num={2}/>
+      <Dice color='red' num={num}/>
     </div>
   );
 }
