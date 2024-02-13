@@ -24,7 +24,7 @@ function App() {
     따라서 위의 setGameHistory를 쓰면 안되고
     아래처럼 spread를 쓰던지해야한다.(메소드, 할당연산자 X) 반드시 새로운 값으로.
     */
-    setGameHistory([...gameHistory. nextNum]);
+    setGameHistory([...gameHistory, nextNum]);
   }
 
   const handleClearClick = () => {
@@ -56,5 +56,8 @@ export default App;
 /* 
   속성에 숫자도 중괄호로 감싸줘야함 
   단순히 보여주기만 할 때는 children prop(문자열, 컴포넌트, 다른 태그)을 활용하는게 좋다.
-  
+*/
+/*
+  state
+  setter함수를 활용해서 이벤트 핸들러를 등록해두면, 이벤트가 발생할 때마다 리랜더링
 */
