@@ -1,6 +1,8 @@
 import Dice from './Dice';
 
-function Board({ name, color, num, sum, gameHistory }) { //f2로 이름을 바꾸면 파일 내 동일이름이 모두 바뀐다.
+function Board({ name, color, gameHistory }) { //f2로 이름을 바꾸면 파일 내 동일이름이 모두 바뀐다.
+    const num = gameHistory[gameHistory.length - 1] || 1;
+    const sum = gameHistory.reduce((a, b) => a + b, 0);
     return (
         <div>
             <h2>{name}</h2>
