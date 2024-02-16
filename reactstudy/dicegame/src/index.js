@@ -4,7 +4,7 @@ import './index.css'; //css import는 경로를 바로 붙여준다.
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <App/>,
+  <App />,
   document.getElementById('root')
 );
 
@@ -26,4 +26,22 @@ root.render(
   1. 반복적인 개발이 줄어든다.
   2. 오류를 고치기 쉽다.
   3. 일을 쉽게 나눌 수 있다(분업이 가능하다)
+
+  npm init react-app . : 프로젝트 생성
+  npm run build : react로 작업한 것을 웹 서버가 읽을 수 있도록 build 폴더 생성.
+  npx serve build : 잘 작동하는지 '로컬 서버'에서 체크(처음엔 설치 필요)
+
+  배포 : AWS 로그인 > S3(구글드라이브같은 저장소) > 버킷 만들기 
+  > 속성
+  > 정적 웹사이트 호스팅-활성화, 오류문서도 index.html로 설정(경로처리를 리액트로 할 수 있게 됨)
+  > 권한
+  > 버킷정책 > 정책 생성기 
+  > step1 = S3 Bucket Policy
+  > step2 principal을 *, actions에 getObject, ARN은 정책에서 복사-붙여넣기. /* 붙여줌.
+    (버킷의 모든 파일에 정책을 적용한다는 의미)
+  > Add Statement > Generate Policy > 만들어진 json 복사 붙여넣기 > 저장
+  > 객체
+  > 업로드 > build 파일 안 내용 넣어주기
+  > 닫기 > 속성 > 맨 하단 생성된 링크
+  http://dicegame.react.codeit240216.s3-website.ap-northeast-2.amazonaws.com
 */
