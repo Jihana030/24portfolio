@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import './index.css'; //css import는 경로를 바로 붙여준다.
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
