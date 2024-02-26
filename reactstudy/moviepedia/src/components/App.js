@@ -1,6 +1,6 @@
 import { getReviews } from "../api";
 import ReviewList from "./ReviewList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -15,10 +15,15 @@ function App() {
     setItems(nextItems);
   };
 
-  const handleLoadClick = async () => {
+  const handleLoad = async () => {
     const { reviews } = await getReviews();
     setItems(reviews);
-  }
+  };
+
+  // 처음 랜더링 될 때 리퀘스트를 보내고 싶다면
+  useEffect(() => {
+    handleLoad();
+  }, []);
 
   return (
     <div>
@@ -27,7 +32,6 @@ function App() {
         <button onClick={handleBestClick}>베스트순</button>
       </div>
       <ReviewList items={sortedItems} onDelete={handleDelete} />
-      <button onClick={handleLoadClick}>불러오기</button>
     </div>
   );
 }
