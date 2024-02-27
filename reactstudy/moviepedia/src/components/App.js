@@ -15,15 +15,22 @@ function App() {
     setItems(nextItems);
   };
 
-  const handleLoad = async () => {
-    const { reviews } = await getReviews();
+  const handleLoad = async (orderQuery) => {
+    const { reviews } = await getReviews(orderQuery);
     setItems(reviews);
   };
 
-  // 처음 랜더링 될 때 리퀘스트를 보내고 싶다면
+  // 처음 랜더링 될 때 리퀘스트를 보내고 싶다면 useEffect
+  // useEffect(() => {
+  //   handleLoad();
+  // }, []);
+  /* 
+  useEffect함수는 맨 처음 랜더링이 끝나면 콜백함수(handleLoad)를 실행.
+  그 다음부터는 디펜던시 리스트([])를 비교, 값이 다른 경우에만 콜백을 실행.
+  */
   useEffect(() => {
-    handleLoad();
-  }, []);
+    handleLoad(order);
+  }, [order]);
 
   return (
     <div>
