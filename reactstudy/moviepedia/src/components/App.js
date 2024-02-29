@@ -2,9 +2,13 @@ import { getReviews } from "../api";
 import ReviewList from "./ReviewList";
 import { useEffect, useState } from "react";
 
+const LIMIT = 6;
+
 function App() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
+  const [offset, setOffset] = useState(0);
+  const [hasNext, setHasNext] = useState(false);
   const sortedItems = items.sort((a, b) => b[order] - a[order]);
 
   const handleNewestClick = () => setOrder("createdAt");
@@ -15,10 +19,20 @@ function App() {
     setItems(nextItems);
   };
 
-  const handleLoad = async (orderQuery) => {
-    const { reviews } = await getReviews(orderQuery);
-    setItems(reviews);
+  const handleLoad = async (options) => {
+    const { reviews, paging } = await getReviews(options);
+    if (options.offset === 0) {
+      setItems(reviews);
+    } else {
+      setItems([...items, ...reviews]);
+    }
+    setOffset(options.offset + reviews.length);
+    setHasNext(paging.hasNext);
   };
+
+  const handleLoadMore = () => {
+    handleLoad({ order, offset, limit: LIMIT });
+  }
 
   // 처음 랜더링 될 때 리퀘스트를 보내고 싶다면 useEffect
   // useEffect(() => {
@@ -29,7 +43,7 @@ function App() {
   그 다음부터는 디펜던시 리스트([])를 비교, 값이 다른 경우에만 콜백을 실행.
   */
   useEffect(() => {
-    handleLoad(order);
+    handleLoad({ order, offset: 0, limit: LIMIT });
   }, [order]);
 
   return (
@@ -39,6 +53,7 @@ function App() {
         <button onClick={handleBestClick}>베스트순</button>
       </div>
       <ReviewList items={sortedItems} onDelete={handleDelete} />
+      <button disabled={!hasNext} onClick={handleLoadMore}>더 보기</button>
     </div>
   );
 }
