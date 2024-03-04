@@ -24,7 +24,11 @@ function App() {
     if (options.offset === 0) {
       setItems(reviews);
     } else {
-      setItems([...items, ...reviews]);
+      // setItems([...items, ...reviews]);
+      // 이렇게 쓰면 더보기 버튼 클릭 후 삭제버튼을 눌러 목록 하나를 지웠을 경우,
+      // 지운 것을 모르고 이전 시점의 목록으로 불러와 삭제되지 않는 것 같은 버그가 발생
+      setItems((prevItems) => [...prevItems, ...reviews]);
+      // 이렇게 prev 파라미터로 현재 시점의 데이터를 전송하도록 해야 한다. (콜백 사용)
     }
     setOffset(options.offset + reviews.length);
     setHasNext(paging.hasNext);
