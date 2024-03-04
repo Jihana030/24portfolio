@@ -32,7 +32,7 @@ function App() {
 
   const handleLoadMore = () => {
     handleLoad({ order, offset, limit: LIMIT });
-  }
+  };
 
   // 처음 랜더링 될 때 리퀘스트를 보내고 싶다면 useEffect
   // useEffect(() => {
@@ -53,7 +53,22 @@ function App() {
         <button onClick={handleBestClick}>베스트순</button>
       </div>
       <ReviewList items={sortedItems} onDelete={handleDelete} />
-      <button disabled={!hasNext} onClick={handleLoadMore}>더 보기</button>
+      {hasNext && <button onClick={handleLoadMore}>더 보기</button>}
+      {/* 
+          <논리연산자 &&>
+          hasNext값이 거짓이면 식을 계산하지않고 앞의 조건인 hasNext의 값을 사용. ..?
+          hasNext값이 false이기 때문에 리액트가 렌더링하지 않음 = 버튼이 보이지않게 됨
+          앞의 값이 true면 렌더링, false면 렌더링하지 않음.
+
+          <||>
+          앞의 값이 true면 렌더링하지 않고, false면 렌더링
+
+          <삼항연산자>
+          ex ? A : B 일 때, ex가 true라면 A를, false라면 B를 렌더링
+
+          <렌더링되지 않는 값>
+          null, undefined, true, false, '', []
+      */}
     </div>
   );
 }
