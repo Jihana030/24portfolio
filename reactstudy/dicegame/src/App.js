@@ -1,39 +1,45 @@
-import {useState} from 'react'; //state는 불러와서 써야함.
+import { useState } from 'react';  //state는 불러와서 써야함.
 import Button from './Button';
-import Dice from './Dice';
+import Board from './Board';
+import './App.css'
 
 function random(n) {
   return Math.ceil(Math.random() * n);
 }
 
 function App() {
-  const [num, setNum] = useState(1);
-  // [state값, setter함수(state값 변경, setter함수로만 가능)] = useState(초기값)
+
+  // state lifting : 자식 컴포넌트의 state를 부모 컴포넌트로 올려주는 것
+  // '나'의 숫자
+  const [myHistory, setMyHistory] = useState([]);
+
+  // '상대'의 숫자
+  const [otherHistory, setOtherHistory] = useState([]);
 
   const handleRollClick = () => {
-    const nextNum = random(6);
-    setNum(nextNum);
+    const nextMyNum = random(6);
+    const nextOtherNum = random(6);
+    setMyHistory([...myHistory, nextMyNum]);
+    setOtherHistory([...otherHistory, nextOtherNum]);
   }
 
-  const handleClearClick=()=>{
-    setNum(1);
+  const handleClearClick = () => {
+    setMyHistory([]);
+    setOtherHistory([]);
   }
 
   return (
-    <div>
+    <div className='App'>
       <div>
-        <Button onClick={handleRollClick}>던지기</Button>
-        <Button onClick={handleClearClick}>처음부터</Button>
+        <Button className='App-button' color="blue" onClick={handleRollClick}>던지기</Button>
+        <Button className='App-button' color="red" onClick={handleClearClick}>처음부터</Button>
       </div>
-      <Dice color='red' num={num}/>
+      <div>
+        <Board name='나' color='blue' gameHistory={myHistory} />
+        <Board name='상대' color='red' gameHistory={otherHistory} />
+      </div>
     </div>
   );
 }
 
 export default App;
-
-/* 
-  속성에 숫자도 중괄호로 감싸줘야함 
-  단순히 보여주기만 할 때는 children prop(문자열, 컴포넌트, 다른 태그)을 활용하는게 좋다.
-  
-*/
