@@ -76,7 +76,7 @@ function App() {
           더 보기
         </button>
       )}
-      {loadingError?.message && <span>{ loadingError.message }</span>};
+      {loadingError?.message && <span>{ loadingError.message }</span>}
       {/* 
           <논리연산자 &&>
           hasNext값이 거짓이면 식을 계산하지않고 앞의 조건인 hasNext의 값을 사용. ..?
