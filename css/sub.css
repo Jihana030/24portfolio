@@ -1,28 +1,54 @@
 /* 카테고리 */
 .subject_wrap .card_wrap {
-    margin: 10px;
-    position: relative;
-    display: inline-block;
+  margin: 10px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.subject_wrap .card_wrap:hover .card {
+  animation: cardTurn 0.5s 2 alternate;
 }
 .subject_wrap .card_wrap .card {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .subject_wrap .card_wrap .card_title {
-    position: absolute;
+  position: absolute;
 }
 .subject_wrap .card_wrap .card_explan {
-    position: absolute;
-    background-color: #ffffff60;
-    border-radius: 5px;
-    padding: 10px;
-    top: 0;
-    right: -220px;
-    z-index: 9;
+  position: absolute;
+  background-color: #f8efed;
+  color: var(--main-black);
+  border-radius: 5px;
+  padding: 10px;
+  top: 0;
+  right: -210px;
+  z-index: 9;
 }
 .subject_wrap .card_wrap .card_explan li {
-    padding: 5px;
+  padding: 5px;
+}
+
+@keyframes cardTurn {
+  0% {
+    transform: rotateY(0);
+  }
+  20% {
+    transform: rotateY(90deg);
+  }
+  40% {
+    transform: rotateY(0);
+  }
+  60% {
+    transform: rotateY(90deg);
+  }
+  80% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(90deg);
+  }
 }
