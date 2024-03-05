@@ -5,14 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/common.css" />
     <link rel="stylesheet" href="../css/root.css" />
+    <link rel="stylesheet" href="../css/sub.css" />
     <link rel="icon" type="image/png" href="./img/temp_pavicon.png" />
     <title>카드를 골라보세요</title>
   </head>
   <body>
     <!-- header js로 include -->
     <header data-include-path="./header.html"></header>
-    <div>
-      <img src="../img/menucard06.png" alt="카테고리카드" />
+    <div class="subject_wrap">
+      <!-- 카드 하나 설정 -->
+      <div class="card_wrap">
+        <div class="card">
+            <span class="card_title">해리포터</span>
+            <img src="../img/menucard06.png" alt="카테고리카드" />
+        </div>
+        <!-- 카드 애니메이션 후 보일 설명 레이어 -->
+        <div class="card_explan dis-none">
+          <ul>
+            <li>학원 마지막 프로젝트</li>
+            <li>1등으로 수료</li>
+            <li>역사, 교수소개, 연혁 작업</li>
+          </ul>
+        </div>
+      </div>
+      <!-- 카드 하나 설정 -->
+      <div class="card_wrap">
+        <div class="card">
+            <span class="card_title">해리포터</span>
+            <img src="../img/menucard06.png" alt="카테고리카드" />
+        </div>
+        <!-- 카드 애니메이션 후 보일 설명 레이어 -->
+        <div class="card_explan dis-none">
+          <ul>
+            <li>학원 마지막 프로젝트</li>
+            <li>1등으로 수료</li>
+            <li>역사, 교수소개, 연혁 작업</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </body>
   <script src="./js/include.js"></script>
