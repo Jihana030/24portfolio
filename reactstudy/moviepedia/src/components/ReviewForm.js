@@ -23,11 +23,23 @@ function ReviewForm() {
     setContent(e.target.value);
   }
 
+  const handleSubmit = (e) => {
+    // form의 기본 동작은 submit 버튼을 눌렀을때 입력 폼의 값과 함께 get 리퀘스트를 보내는 것
+    // 따라서 기본 동작을 막아줘야만 새로고침 하지 않음.
+    e.preventDefault();
+    console.log({
+      title,
+      rating,
+      content,
+    });
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input value={title} onChange={handleTitleChange} />
       <input type="number" value={rating} onChange={handleRatingChange} />
       <textarea value={content} onChange={handleContentChange} />
+      <button type="submit">확인</button>
     </form>
   );
 }
