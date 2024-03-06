@@ -1,4 +1,12 @@
 /* 카테고리 */
+.subject_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
 .subject_wrap .card_wrap {
   margin: 10px;
   position: relative;
@@ -17,6 +25,9 @@
 }
 .subject_wrap .card_wrap .card_title {
   position: absolute;
+  width: 130px;
+  text-align: center;
+  line-height: 20px;
 }
 .subject_wrap .card_wrap .card_explan {
   position: absolute;
