@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FileInput from "./FileInput";
 
 function ReviewForm() {
   // 리액트에서 input은 state로 관리.
@@ -13,28 +14,19 @@ function ReviewForm() {
     title: '',
     rating: 0,
     content: '',
+    imgFile: null,
   })
 
-  // const handleTitleChange = (e) => {
-  //   // input의 value가 변경될 때마다 그 값을 state에 반영
-  //   setTitle(e.target.value);
-  // };
-
-  // const handleRatingChange = (e) => {
-  //   const nextRating = Number(e.target.value) || 0;
-  //   setRating(nextRating);
-  // };
-
-  // const handleContentChange = (e) => {
-  //   setContent(e.target.value);
-  // }
-  //<위 함수도 하나로 줄이기>
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (name, value) => {
     setValues((prevValues) => ({
       ...prevValues,
       [name]: value,
-    }))
+    }));
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    handleChange(name, value);
   }
 
   const handleSubmit = (e) => {
@@ -51,9 +43,10 @@ function ReviewForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="title" value={values.title} onChange={handleChange} />
-      <input name="rating" type="number" value={values.rating} onChange={handleChange} />
-      <textarea name="content" value={values.content} onChange={handleChange} />
+      <FileInput name='imgFile' value={values.imgFile} onChange={handleChange}/>
+      <input name="title" value={values.title} onChange={handleInputChange} />
+      <input name="rating" type="number" value={values.rating} onChange={handleInputChange} />
+      <textarea name="content" value={values.content} onChange={handleInputChange} />
       <button type="submit">확인</button>
     </form>
   );
