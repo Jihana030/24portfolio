@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 // 파일 인풋은 반드시 비제어 인풋으로 만들어야함
 // 해킹 위험때문에 js에서 파일 인풋의 값은 사용자만이 바꿀 수 있음.
 // = fileInput은 value prop을 지정할 수 없음.
+// 이를 이용해 value를 빈 문자열로 만들면 인풋을 초기화 할 수 있음.
 function FileInput({ name, value, onChange }) {
   // 실제 DOM노드를 볼 수 있는 useRef
   const inputRef = useRef();
@@ -12,14 +13,20 @@ function FileInput({ name, value, onChange }) {
     onChange(name, nextValue);
   };
 
-  // useEffect(() => {
-  //   // 조건에 따라 컴포넌트가 사라지는 경우 없을 수도 있어서 if문으로 사용하는 걸 권장
-  //   if (inputRef.current) {
-  //     console.log(inputRef.current);
-  //   }
-  // }, []);
+  const handleClearClick = (e) => {
+    const inputNode = inputRef.current;
+    if (!inputNode) return;
 
-  return <input type="file" onChange={handleChange} ref={inputRef} />;
+    inputNode.value = '';
+    onChange(name, null); //부모 컴포넌트에서 imgFile 값이 null로 변경
+  }
+
+  return (
+    <div>
+      <input type="file" onChange={handleChange} ref={inputRef} />
+      {value && <button onClick={handleClearClick}>X</button>}
+    </div>
+  );
 }
 
 export default FileInput;
