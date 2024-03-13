@@ -1,22 +1,19 @@
 import { useState } from "react";
 import FileInput from "./FileInput";
 import RatingInput from "./RatingInput";
+import { createReviews } from "../api";
+
+const INITIAL_VALUES = {
+  title: "",
+  rating: 0,
+  content: "",
+  imgFile: null,
+};
 
 function ReviewForm() {
-  // 리액트에서 input은 state로 관리.
-  // state의 값과 input의 값을 동일하게 만드는 게 핵심. = 제어컴포넌트
-
-  // 영화 제목을 받을 state
-  // const [title, setTitle] = useState("");
-  // const [rating, setRating] = useState(0);
-  // const [content, setContent] = useState("");
-  // <위 state를 하나의 state로 관리하기>
-  const [values, setValues] = useState({
-    title: '',
-    rating: 0,
-    content: '',
-    imgFile: null,
-  })
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittingError, setSubmittingError] = useState(null);
+  const [values, setValues] = useState(INITIAL_VALUES);
 
   const handleChange = (name, value) => {
     setValues((prevValues) => ({
@@ -30,16 +27,26 @@ function ReviewForm() {
     handleChange(name, value);
   }
 
-  const handleSubmit = (e) => {
-    // form의 기본 동작은 submit 버튼을 눌렀을때 입력 폼의 값과 함께 get 리퀘스트를 보내는 것
-    // 따라서 기본 동작을 막아줘야만 새로고침 하지 않음.
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log({
-    //   title,
-    //   rating,
-    //   content,
-    // });
-    console.log(values);
+    const formData = new FormData();
+    formData.append('title', values.title);
+    formData.append('rating', values.rating);
+    formData.append('content', values.content);
+    formData.append('imgFile', values.imgFile);
+
+    try {
+      setSubmittingError(null);
+      setIsSubmitting(true);
+      await createReviews(formData);
+    } catch (error) {
+      setSubmittingError(error);
+      return;
+    } finally {
+      setIsSubmitting(false);
+    }
+    // 리퀘스트가 끝나면 폼 초기화
+    setValues(INITIAL_VALUES);
   }
 
   return (
@@ -48,7 +55,8 @@ function ReviewForm() {
       <input name="title" value={values.title} onChange={handleInputChange} />
       <RatingInput name="rating" type="number" value={values.rating} onChange={handleChange} />
       <textarea name="content" value={values.content} onChange={handleInputChange} />
-      <button type="submit">확인</button>
+      <button type="submit" disabled={isSubmitting}>확인</button>
+      {submittingError?.message && <div>{ submittingError.message }</div>}
     </form>
   );
 }
