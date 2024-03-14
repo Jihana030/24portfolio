@@ -53,6 +53,10 @@ function App() {
     handleLoad({ order, offset, limit: LIMIT });
   };
 
+  const handleSubmitSuccess = (review) => {
+    setItems((prevItems)=>[review, ...prevItems])
+  }
+
   // 처음 랜더링 될 때 리퀘스트를 보내고 싶다면 useEffect
   // useEffect(() => {
   //   handleLoad();
@@ -71,7 +75,7 @@ function App() {
         <button onClick={handleNewestClick}>최신순</button>
         <button onClick={handleBestClick}>베스트순</button>
       </div>
-      <ReviewForm />
+      <ReviewForm onSubmitSuccess={handleSubmitSuccess}/>
       <ReviewList items={sortedItems} onDelete={handleDelete} />
       {hasNext && (
         <button disabled={isLoading} onClick={handleLoadMore}>
