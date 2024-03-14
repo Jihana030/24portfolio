@@ -1,7 +1,7 @@
-import { getReviews } from "../api";
+import { createReview, getReviews, updateReview }updateReview from "../api";
 import ReviewList from "./ReviewList";
 import { useEffect, useState } from "react";
-import ReviewForm from './ReviewForm';
+import ReviewForm from "./ReviewForm";
 
 const LIMIT = 6;
 
@@ -53,9 +53,20 @@ function App() {
     handleLoad({ order, offset, limit: LIMIT });
   };
 
-  const handleSubmitSuccess = (review) => {
-    setItems((prevItems)=>[review, ...prevItems])
-  }
+  const handleCreateSuccess = (review) => {
+    setItems((prevItems) => [review, ...prevItems]);
+  };
+
+  const handleUpdateSuccess = (review) => {
+    setItems((prevItems) => {
+      const splitIdx = prevItems.findIndex((item) => item.id === review.id);
+      return [
+        ...prevItems.slice(0, splitIdx),
+        review,
+        ...prevItems.slice(splitIdx + 1),
+      ];
+    });
+  };
 
   // 처음 랜더링 될 때 리퀘스트를 보내고 싶다면 useEffect
   // useEffect(() => {
@@ -75,14 +86,22 @@ function App() {
         <button onClick={handleNewestClick}>최신순</button>
         <button onClick={handleBestClick}>베스트순</button>
       </div>
-      <ReviewForm onSubmitSuccess={handleSubmitSuccess}/>
-      <ReviewList items={sortedItems} onDelete={handleDelete} />
+      <ReviewForm
+        onSubmit={createReview}
+        onSubmitSuccess={handleCreateSuccess}
+      />
+      <ReviewList
+        items={sortedItems}
+        onDelete={handleDelete}
+        onUpdate={updateReview}
+        onUpdateSuccess={handleUpdateSuccess}
+      />
       {hasNext && (
         <button disabled={isLoading} onClick={handleLoadMore}>
           더 보기
         </button>
       )}
-      {loadingError?.message && <span>{ loadingError.message }</span>}
+      {loadingError?.message && <span>{loadingError.message}</span>}
       {/* 
           <논리연산자 &&>
           hasNext값이 거짓이면 식을 계산하지않고 앞의 조건인 hasNext의 값을 사용. ..?
