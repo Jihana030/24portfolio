@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react";
 // 해킹 위험때문에 js에서 파일 인풋의 값은 사용자만이 바꿀 수 있음.
 // = fileInput은 value prop을 지정할 수 없음.
 // 이를 이용해 value를 빈 문자열로 만들면 인풋을 초기화 할 수 있음.
-function FileInput({ name, value, onChange }) {
+function FileInput({ name, value, initialPreview, onChange }) {
   // 실제 DOM노드를 볼 수 있는 useRef
   const inputRef = useRef();
   // 이미지 미리보기 기능
-  const [preview, setPreview] = useState();
+  const [preview, setPreview] = useState(initialPreview);
 
   const handleChange = (e) => {
     const nextValue = e.target.files[0];
@@ -33,16 +33,21 @@ function FileInput({ name, value, onChange }) {
 
     return () => {
       //할당한 메모리를 해제도 해줘야 함. 여기서 사이드 이펙트를 정리할 수 있음.
-      setPreview();
+      setPreview(initialPreview);
       URL.revokeObjectURL(nextPreview); //앞에서 만든 objectURL 해제.
     };
-  }, [value]); //파일을 선택할 때마다 미리보기 주소가 바뀌도록
+  }, [value, initialPreview]); //파일을 선택할 때마다 미리보기 주소가 바뀌도록
   //useEffect가 실행될 때 정리함수는 기억해둠. 디펜더시가 작동할 때 기억 한 정리함수를 실행 후 작동.
 
   return (
     <div>
       <img src={preview} alt="이미지 미리보기" />
-      <input type="file" accept="image/png, image/jpeg" onChange={handleChange} ref={inputRef} />
+      <input
+        type="file"
+        accept="image/png, image/jpeg"
+        onChange={handleChange}
+        ref={inputRef}
+      />
       {value && <button onClick={handleClearClick}>X</button>}
     </div>
   );
