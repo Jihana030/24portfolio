@@ -1,6 +1,6 @@
 import { createReview, deleteReview, getReviews, updateReview } from "../api";
 import ReviewList from "./ReviewList";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ReviewForm from "./ReviewForm";
 import useAsync from "./hooks/useAsync";
 
@@ -21,26 +21,31 @@ function App() {
   const handleDelete = async (id) => {
     const result = await deleteReview(id);
     if (!result) return;
-    setItems((prevItems)=>prevItems.filter((item) => item.id !== id));
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  const handleLoad = async (options) => {
-    const result = await getReviewsAsync(options);
-    if (!result) return;
+  const handleLoad = useCallback(
+    async (options) => {
+      const result = await getReviewsAsync(options);
+      if (!result) return;
 
-    const { reviews, paging } = result;
-    if (options.offset === 0) {
-      setItems(reviews);
-    } else {
-      // setItems([...items, ...reviews]);
-      // 이렇게 쓰면 더보기 버튼 클릭 후 삭제버튼을 눌러 목록 하나를 지웠을 경우,
-      // 지운 것을 모르고 이전 시점의 목록으로 불러와 삭제되지 않는 것 같은 버그가 발생
-      setItems((prevItems) => [...prevItems, ...reviews]);
-      // 이렇게 prev 파라미터로 현재 시점의 데이터를 전송하도록 해야 한다. (콜백 사용)
-    }
-    setOffset(options.offset + reviews.length);
-    setHasNext(paging.hasNext);
-  };
+      const { reviews, paging } = result;
+      if (options.offset === 0) {
+        setItems(reviews);
+      } else {
+        // setItems([...items, ...reviews]);
+        // 이렇게 쓰면 더보기 버튼 클릭 후 삭제버튼을 눌러 목록 하나를 지웠을 경우,
+        // 지운 것을 모르고 이전 시점의 목록으로 불러와 삭제되지 않는 것 같은 버그가 발생
+        setItems((prevItems) => [...prevItems, ...reviews]);
+        // 이렇게 prev 파라미터로 현재 시점의 데이터를 전송하도록 해야 한다. (콜백 사용)
+      }
+      setOffset(options.offset + reviews.length);
+      setHasNext(paging.hasNext);
+    },
+    [getReviewsAsync]
+  );
+  // useCallback의 디펜던시는 언제 새로생성할 것인지를 판단하는 기준이 됨
+  // 디펜던시 값이 그대로라면 재사용, 아니라면 새로 만듬.
 
   const handleLoadMore = () => {
     handleLoad({ order, offset, limit: LIMIT });
@@ -71,7 +76,7 @@ function App() {
   */
   useEffect(() => {
     handleLoad({ order, offset: 0, limit: LIMIT });
-  }, [order]);
+  }, [order, handleLoad]);
 
   return (
     <div>
