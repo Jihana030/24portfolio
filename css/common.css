@@ -33,6 +33,7 @@ body {
     letter-spacing: 0;
     word-break: keep-all;
     background-color: var(--main-black);
+    caret-color: var(--main-white);
 }
 
 /* 드래그 시 색 변화 */

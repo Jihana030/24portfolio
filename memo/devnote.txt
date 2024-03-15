@@ -105,7 +105,7 @@ https://ywtechit.tistory.com/410
 
 오후 3:05 2024-03-15
 geustBook.html 만들기
-
+guestBook에 header가 안나오지만 지난번처럼 다시 켜면 될 수 있으니 그냥 두기로 했다. 카테고리엔 되는데 너가 안되면 이상하잖니.
 
 
 
