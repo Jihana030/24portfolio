@@ -3,13 +3,12 @@ import ReviewList from "./ReviewList";
 import { useCallback, useEffect, useState } from "react";
 import ReviewForm from "./ReviewForm";
 import useAsync from "./hooks/useAsync";
-import LocaleContext from "../contexts/LocaleContext";
+import { LocaleProvider } from "../contexts/LocaleContext";
 import LocaleSelect from "./LocaleSelect";
 
 const LIMIT = 6;
 
 function App() {
-  const [locale, setLocale] = useState('ko');
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
   const [offset, setOffset] = useState(0);
@@ -83,9 +82,9 @@ function App() {
 
   return (
     //이러면 lacalcontext내부의 컴포넌트는 context가 제공하는 값을 사용할 수 있음.
-    <LocaleContext.Provider value={locale}> 
+    <LocaleProvider defaultValue={'ko'}> 
       <div>
-        <LocaleSelect value={locale} onChange={setLocale} />
+        <LocaleSelect />
         <div>
           <button onClick={handleNewestClick}>최신순</button>
           <button onClick={handleBestClick}>베스트순</button>
@@ -122,7 +121,7 @@ function App() {
           null, undefined, true, false, '', []
       */}
       </div>
-    </LocaleContext.Provider>
+    </LocaleProvider>
   );
 }
 

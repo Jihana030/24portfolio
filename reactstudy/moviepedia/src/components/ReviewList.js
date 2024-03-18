@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import Rating from "./Rating";
 import ReviewForm from "./ReviewForm";
 import "./ReviewList.css";
-import LocaleContext from "../contexts/LocaleContext";
+import { useLocale } from "../contexts/LocaleContext";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -11,7 +11,7 @@ function formatDate(value) {
 
 function ReviewListItem({ item, onDelete, onEdit }) {
   // 원하는 컴포넌트에 useContext를 사용하면 context값을 가져올 수 있음
-  const locale = useContext(LocaleContext);
+  const locale = useLocale;
 
   const handleDeleteClick = () => onDelete(item.id);
   const handleEditClick = () => onEdit(item.id);

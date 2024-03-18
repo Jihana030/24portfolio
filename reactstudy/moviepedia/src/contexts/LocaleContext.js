@@ -7,8 +7,47 @@
   createContext로 만들 수 있다.
 */
 
-import { createContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const LocaleContext = createContext();
 
-export default LocaleContext;
+export function LocaleProvider({ defaultValue = "ko", children }) {
+  // provider에 기본 locale값을 지정하기 위해 defaultValue 추가
+  const [locale, setLocale] = useState(defaultValue);
+  // state값을 바꾸는 것도 반드시 context를 통해서 하기 위해 value에게 state 내려줌
+  return (
+    <LocaleContext.Provider
+      value={{
+        locale,
+        setLocale,
+      }}
+    >
+      {children}
+    </LocaleContext.Provider>
+  );
+}
+
+// 커스텀 hook(매번 useContext랑 localeContext를 가지고 사용하는건 번거로우니 대체제)
+// locale값 전달 hook
+export function useLocale() {
+  const context = useContext(LocaleContext);
+
+  // 커스텀 훅을 쓰면 이렇게 에러표시를 할 수 있다는 장점이 있음.
+  if (!context) {
+    throw new Error('반드시 LocaleProvider 안에서 사용해야 합니다.');
+  }
+
+  return context.locale;
+}
+
+// setLocale값을 가져오는 hook
+export function useSetLocale() {
+  const context = useContext(LocaleContext);
+
+  // 커스텀 훅을 쓰면 이렇게 에러표시를 할 수 있다는 장점이 있음.
+  if (!context) {
+    throw new Error('반드시 LocaleProvider 안에서 사용해야 합니다.');
+  }
+
+  return context.setLocale;
+}
