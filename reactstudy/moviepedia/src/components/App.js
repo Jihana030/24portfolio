@@ -3,6 +3,8 @@ import ReviewList from "./ReviewList";
 import { useCallback, useEffect, useState } from "react";
 import ReviewForm from "./ReviewForm";
 import useAsync from "./hooks/useAsync";
+import { LocaleProvider } from "../contexts/LocaleContext";
+import LocaleSelect from "./LocaleSelect";
 
 const LIMIT = 6;
 
@@ -79,28 +81,31 @@ function App() {
   }, [order, handleLoad]);
 
   return (
-    <div>
+    //이러면 lacalcontext내부의 컴포넌트는 context가 제공하는 값을 사용할 수 있음.
+    <LocaleProvider defaultValue={'ko'}> 
       <div>
-        <button onClick={handleNewestClick}>최신순</button>
-        <button onClick={handleBestClick}>베스트순</button>
-      </div>
-      <ReviewForm
-        onSubmit={createReview}
-        onSubmitSuccess={handleCreateSuccess}
-      />
-      <ReviewList
-        items={sortedItems}
-        onDelete={handleDelete}
-        onUpdate={updateReview}
-        onUpdateSuccess={handleUpdateSuccess}
-      />
-      {hasNext && (
-        <button disabled={isLoading} onClick={handleLoadMore}>
-          더 보기
-        </button>
-      )}
-      {loadingError?.message && <span>{loadingError.message}</span>}
-      {/* 
+        <LocaleSelect />
+        <div>
+          <button onClick={handleNewestClick}>최신순</button>
+          <button onClick={handleBestClick}>베스트순</button>
+        </div>
+        <ReviewForm
+          onSubmit={createReview}
+          onSubmitSuccess={handleCreateSuccess}
+        />
+        <ReviewList
+          items={sortedItems}
+          onDelete={handleDelete}
+          onUpdate={updateReview}
+          onUpdateSuccess={handleUpdateSuccess}
+        />
+        {hasNext && (
+          <button disabled={isLoading} onClick={handleLoadMore}>
+            더 보기
+          </button>
+        )}
+        {loadingError?.message && <span>{loadingError.message}</span>}
+        {/* 
           <논리연산자 &&>
           hasNext값이 거짓이면 식을 계산하지않고 앞의 조건인 hasNext의 값을 사용. ..?
           hasNext값이 false이기 때문에 리액트가 렌더링하지 않음 = 버튼이 보이지않게 됨
@@ -115,7 +120,8 @@ function App() {
           <렌더링되지 않는 값>
           null, undefined, true, false, '', []
       */}
-    </div>
+      </div>
+    </LocaleProvider>
   );
 }
 
