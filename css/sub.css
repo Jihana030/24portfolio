@@ -201,3 +201,11 @@
   font-family: "ONE-Mobile-Title";
   cursor: pointer;
 }
+
+/* 운세뽑기 */
+#luckydraw_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
