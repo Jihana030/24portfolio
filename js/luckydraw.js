@@ -29,7 +29,7 @@
         randomTxt.innerHTML = `${txtArr[txtRandom]}`;
         randomTxt.childNodes[1].innerHTML = `${random}`;
       }
-    }, 1000);
+    }, 8000);
   });
   gif.addEventListener("click", (e) => {
     gif.classList.add("dis-none");
