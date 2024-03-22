@@ -215,17 +215,20 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 450px;
 }
 
 #luckydraw_wrap .lucky_wrap .draw {
   margin: 20px;
-  width: 250px;
   cursor: pointer;
 }
-#luckydraw_wrap .lucky_wrap .draw img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+#luckydraw_wrap .lucky_wrap .draw img.draw_png {
+  width: auto;
+  width: 200px;
+}
+#luckydraw_wrap .lucky_wrap .draw img.draw_gif {
+  width: auto;
+  height: 450px;
 }
 #luckydraw_wrap .lucky_wrap .txt_wrap {
   font-size: 20px;
@@ -237,11 +240,10 @@
 #luckydraw_wrap .txt_slide_wrap {
   font-size: 30px;
   background-color: #d9d9d920;
-  margin-top: 40px;
   position: relative;
   width: 100%;
   height: 45px;
-  margin: 0 auto;
+  margin: 50px auto;
   box-sizing: border-box;
   overflow: hidden;
   letter-spacing: -0.075em;
