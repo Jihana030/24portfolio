@@ -133,43 +133,38 @@
 }
 
 /* 방명록 쓰기 */
-#guestBook_wrap .table_wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 0 30px;
-}
-#guestBook_wrap .table_wrap .write_table {
-  width: 100%;
+#guestBook_wrap .form_wrap {
+  width: calc(100% - 40px);
   background-color: var(--sub-back);
   padding: 20px;
   border-radius: 10px;
+  margin: 30px auto;
 }
-#guestBook_wrap .table_wrap table {
+#guestBook_wrap .form_wrap form {
   width: 100%;
-  border-collapse: collapse;
   font-family: "GmarketSansMedium";
 }
 
-#guestBook_wrap .table_wrap table th {
+#guestBook_wrap .form_wrap form div {
+  border-bottom: 1px solid var(--main-white);
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+#guestBook_wrap .form_wrap form div label {
   border-right: 1px solid var(--main-white);
-  border-bottom: 1px solid var(--main-white);
   padding: 10px;
 }
-
-#guestBook_wrap .table_wrap table td {
-  border-left: 1px solid var(--main-white);
-  border-bottom: 1px solid var(--main-white);
-  padding: 10px;
+#guestBook_wrap .form_wrap form div:nth-child(3) label {
+  height: 200px;
 }
-#guestBook_wrap .table_wrap table tr:last-child th,
-#guestBook_wrap .table_wrap table tr:last-child td {
+#guestBook_wrap .form_wrap form div:last-child {
   border-bottom: none;
 }
-#guestBook_wrap .table_wrap table td input,
-#guestBook_wrap .table_wrap table td textarea {
+#guestBook_wrap .form_wrap form input,
+#guestBook_wrap .form_wrap form textarea {
   background-color: var(--sub-back);
   outline: none;
   border: none;
@@ -177,11 +172,12 @@
   padding: 4px;
   color: var(--main-white);
   font-size: 18px;
+  margin-left: 10px;
 }
-#guestBook_wrap .table_wrap table td textarea {
+#guestBook_wrap .form_wrap form div textarea {
   height: 200px;
 }
-#guestBook_wrap .table_wrap .write_btn {
+#guestBook_wrap .form_wrap .write_btn {
   margin-top: 20px;
   width: 100%;
   display: flex;
@@ -190,8 +186,8 @@
   align-items: center;
 }
 
-#guestBook_wrap .table_wrap .write_btn button {
-  background-color: var(--sub-back);
+#guestBook_wrap .form_wrap .write_btn button {
+  background-color: var(--main-black);
   color: var(--main-white);
   border-radius: 10px;
   padding: 8px 20px;

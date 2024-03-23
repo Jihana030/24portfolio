@@ -16,41 +16,28 @@
       <div class="title">
         <h2>글쓰기</h2>
       </div>
-      <div class="table_wrap">
-        <div class="write_table">
-          <table>
-            <colgroup>
-              <col style="width: 20%;">
-              <col>
-            </colgroup>
-            <tbody>
-              <tr>
-                <th>제목</th>
-                <td>
-                  <input type="text" />
-                </td>
-              </tr>
-              <tr>
-                <th>이름</th>
-                <td>
-                  <input type="text" />
-                </td>
-              </tr>
-              <tr>
-                <th>내용</th>
-                <td>
-                  <textarea name="" id=""></textarea>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="write_btn">
-          <button>다시쓰기</button>
-          <button>저장</button>
-        </div>
+      <div id="guestbook-container" class="form_wrap">
+          <form id="leave-message">
+            <div>
+              <label for="title">제목</label>
+              <input id="title" type="text" autofocus>
+            </div>
+            <div>
+              <label for="name">이름</label>
+              <input id="name" type="text">
+            </div>
+            <div>
+              <label for="detail">내용</label>
+              <textarea name="detail" id="detail"></textarea>
+            </div>
+            <div class="write_btn">
+              <button type="reset">다시쓰기</button>
+              <button type="submit">저장</button>
+            </div>
+          </form>
       </div>
     </div>
   </body>
   <script type="module" src="/js/include.js"></script>
+  <script type="text/html" src="/js/guestBook.js"></script>
 </html>
